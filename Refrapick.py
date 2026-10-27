@@ -844,7 +844,7 @@ class Refrapick(Tk):
             if self.velMode: self.appVelMode()
             
             files = filedialog.askopenfilenames(title='Open', initialdir = self.projPath+"/data/", filetypes=[('SEG2 file', '*.dat'),
-                                                                                                            ('SEGY file', '*.sgy'),
+                                                                                                            ('SEGY file', ('*.sgy', '*.segy', '*.SGY', '*.SEGY')),
                                                                                                             ('SU file', '*.su')])
 
             if files:
