@@ -32,7 +32,10 @@ class Refrapick(Tk):
         frame_toolbar = Frame(self)
         frame_toolbar.grid(row=0,column=0,sticky="WE")
         
-        self.iconbitmap("%s/images/ico_refrapy.ico"%getcwd())
+        try:
+             self.iconbitmap("%s/images/ico_refrapy.ico"%getcwd())
+        except:
+             pass
         photo = PhotoImage(file="%s/images/ico_refrapy.gif"%getcwd())
         labelPhoto = Label(frame_toolbar, image = photo, width = 151)
         labelPhoto.image = photo
@@ -851,7 +854,12 @@ class Refrapick(Tk):
                 
                 for i, file in enumerate(files):
 
-                    st = read(file)
+                    if file.lower().endswith(".sgy"):
+                         st = read(file, format="SEGY")
+                    elif file.lower().endswith(".su"):
+                         st = read(file, format="SU")
+                    else:
+                         st = read(file)
 
                     if st[0].stats._format == "SEG2":
                         
