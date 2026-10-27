@@ -853,10 +853,12 @@ class Refrapick(Tk):
                 else: n = 0
                 
                 for i, file in enumerate(files):
-
-                    if file.lower().endswith(".sgy"):
+                    
+                    ext = path.splitext(file)[1].lower()
+                    
+                    if ext in (".sgy", ".segy"):
                          st = read(file, format="SEGY")
-                    elif file.lower().endswith(".su"):
+                    elif ext == ".su":
                          st = read(file, format="SU")
                     else:
                          st = read(file)
